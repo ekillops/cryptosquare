@@ -23,6 +23,23 @@ var gridArray = function(gridNumber) {
   return gridBase;
 };
 
+// Fills targetGrid left to right one letter at a time from inputString.
+var gridDistributor = function(inputString, targetGrid, gridSize) {
+  var passCountX = 0;
+  var passCountY = 0;
+  var gridCount = gridSize - 1;
+
+  for (var i = 0; i < inputString.length; i += 1) {
+    targetGrid[passCountX][passCountY] = inputString[i];
+
+    if (passCountX < gridCount) {
+      passCountX +=1;
+    } else if (passCountX === gridCount) {
+      passCountX = 0;
+      passCountY +=1;
+    }
+  };
+};
 
 $(document).ready(function(){
 
@@ -30,8 +47,11 @@ $(document).ready(function(){
   $("#inputBox").submit(function(event){
     event.preventDefault();
     var userSentence = $("#sentenceInput").val();
+    var cleanSentence = inputPrep(userSentence);
+    var gridSize = nearSquare(cleanSentence);
+    var cryptGrid = gridArray(gridSize);
 
-    var result = inputPrep(userSentence);
+    var result = "placeHolder";
     $("#codeResult").text(result);
 
   });
