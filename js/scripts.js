@@ -10,6 +10,19 @@ var nearSquare = function(stringSize) {
   return gridSize;
 };
 
+//Create a two dimensional array, gridNumber x gridNumber.
+var gridArray = function(gridNumber) {
+  var gridBase = [];
+  for(var i = 0; i < gridNumber; i +=1) {
+    var gridColumn = [];
+    for(var j = 0; j < gridNumber; j +=1) {
+      gridColumn.push("-");
+    };
+    gridBase.push(gridColumn);
+  };
+  return gridBase;
+};
+
 
 $(document).ready(function(){
 
